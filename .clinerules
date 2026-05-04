@@ -1,0 +1,4 @@
+Read AGENTS.md for full NeuraForge AI instructions.
+Search codebase before generating. Plan before acting.
+Use agents/*.md for stack-specific code generation and review.
+Use rules/ for architecture, testing, security standards.

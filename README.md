@@ -211,3 +211,33 @@ This is a v1. Here's what to expect:
 - **MCP servers are curated, not built by us.** We configure and test existing open-source MCP servers. The value is in the agent prompts and architecture rules.
 
 We'd rather ship something useful and iterate with the community than wait for perfection.
+
+<details>
+<summary><strong>Windsurf</strong></summary>
+
+Copy `.windsurfrules` + `AGENTS.md` + `agents/` + `rules/` to your project. Windsurf reads `.windsurfrules` automatically.
+</details>
+
+<details>
+<summary><strong>Cline (VS Code)</strong></summary>
+
+Copy `.cline/mcp.json` + `.clinerules` + `AGENTS.md` + `agents/` to your project.
+</details>
+
+<details>
+<summary><strong>Continue.dev</strong></summary>
+
+Copy `.continue/config.json` + `AGENTS.md` + `agents/` to your project.
+</details>
+
+<details>
+<summary><strong>Aider</strong></summary>
+
+Copy `.aider.conf.yml` + `AGENTS.md` + `agents/` to your project. Aider reads conventions automatically.
+</details>
+
+<details>
+<summary><strong>ChatGPT (Custom GPT)</strong></summary>
+
+See `chatgpt/README.md` for setup. Copy `chatgpt/GPT_INSTRUCTIONS.md` into your Custom GPT's instructions field.
+</details>

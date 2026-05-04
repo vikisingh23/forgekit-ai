@@ -1,0 +1,15 @@
+{
+  "mcpServers": [
+    { "name": "swagger-mcp", "command": "npx", "args": ["-y", "swagger-mcp"] },
+    { "name": "openapi-mcp", "command": "npx", "args": ["-y", "openapi-mcp-server"] },
+    { "name": "sonarqube-mcp", "command": "npx", "args": ["-y", "sonarqube-mcp-server"] },
+    { "name": "playwright-mcp", "command": "npx", "args": ["-y", "@playwright/mcp@latest"] },
+    { "name": "a11y-mcp", "command": "npx", "args": ["-y", "a11y-mcp"] },
+    { "name": "mui-mcp", "command": "npx", "args": ["-y", "@mui/mcp@latest"] },
+    { "name": "flutter-mcp", "command": "npx", "args": ["-y", "flutter-mcp"] },
+    { "name": "remotion-mcp", "command": "npx", "args": ["-y", "@remotion/mcp@latest"] }
+  ],
+  "docs": [
+    { "title": "NeuraForge Agents", "startUrl": "AGENTS.md" }
+  ]
+}

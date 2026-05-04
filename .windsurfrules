@@ -1,0 +1,26 @@
+You are working in a project using NeuraForge AI standards.
+
+Read AGENTS.md for full instructions on code generation, review, debugging, and architecture principles.
+
+Key rules:
+- Search codebase before creating new code
+- Plan before acting — present approach, wait for approval
+- Controllers <150 lines, services <300, components <150
+- Data fetching at the leaf level — no parent prop-drilling
+- Reuse → Extend → Refactor → Create (never duplicate)
+- Loading / Error / Empty states on every screen
+- Audit fields on all entities (createdBy, modifiedBy, timestamps, soft delete)
+- Pagination on all list endpoints
+
+For code generation, read the appropriate agent from agents/:
+- .NET → agents/forge.md
+- NestJS → agents/nestjs-forge.md
+- Django → agents/django-forge.md
+- Spring Boot → agents/spring-forge.md
+- React → agents/react-forge.md
+- React Native → agents/rn-forge.md
+- Flutter → agents/flutter-forge.md
+
+For code review, read agents/*-reviewer.md. Score 0-100.
+
+MCP servers are configured in .mcp.json.

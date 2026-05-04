@@ -1,0 +1,13 @@
+# NeuraForge AI conventions for Aider
+read: AGENTS.md
+conventions: |
+  Follow NeuraForge AI architecture principles:
+  - Search codebase before creating new code
+  - Controllers <150 lines, services <300, components <150
+  - Data fetching at leaf level, no prop-drilling
+  - Reuse existing code, refactor god classes
+  - Audit fields on all entities, soft deletes only
+  - Pagination on all list endpoints
+  - Loading/Error/Empty states on every screen
+  - Read agents/*.md for stack-specific patterns
+  - Read rules/ for coding standards
