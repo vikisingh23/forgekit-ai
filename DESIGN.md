@@ -1,192 +1,249 @@
 ---
-# DESIGN.md — NeuraForge AI Visual Identity
-# Google Stitch / design.md specification (Apache 2.0)
-# https://github.com/google-labs-code/design.md
-
-name: NeuraForge AI
+name: NeuraForge AI Design System
 version: 1.0.0
+base: Material Design 3
 
 tokens:
   colors:
-    primary: "#2E2A94"
-    primary-dark: "#1A1744"
-    accent: "#F9A212"
-    background: "#0F0C2E"
-    surface: "#1A1550"
-    surface-elevated: "rgba(255,255,255,0.04)"
-    border: "rgba(255,255,255,0.08)"
-    text-primary: "#FFFFFF"
-    text-secondary: "#B8B5E0"
-    text-muted: "#8886B0"
-    text-dim: "#6C63A0"
-    success: "#4CAF50"
-    error: "#EF5350"
-    warning: "#F9A212"
-    info: "#4FC3F7"
+    primary: "#1976D2"
+    primary-light: "#42A5F5"
+    primary-dark: "#1565C0"
+    primary-container: "#E3F2FD"
+    secondary: "#9C27B0"
+    secondary-container: "#F3E5F5"
+    tertiary: "#F9A212"
+    tertiary-container: "#FFF3E0"
+    background: "#FAFAFA"
+    surface: "#FFFFFF"
+    surface-variant: "#F5F5F5"
+    surface-container: "#EEEEEE"
+    outline: "#E0E0E0"
+    outline-variant: "#BDBDBD"
+    on-primary: "#FFFFFF"
+    on-surface: "#212121"
+    on-surface-variant: "#757575"
+    error: "#D32F2F"
+    error-container: "#FFEBEE"
+    success: "#2E7D32"
+    success-container: "#E8F5E9"
+    warning: "#ED6C02"
+    warning-container: "#FFF3E0"
+    info: "#0288D1"
+    info-container: "#E1F5FE"
+    scrim: "rgba(0,0,0,0.32)"
 
   typography:
-    font-family: "Inter, system-ui, -apple-system, sans-serif"
-    font-mono: "SF Mono, Fira Code, Consolas, monospace"
+    font-family: "Roboto, system-ui, -apple-system, sans-serif"
+    font-mono: "Roboto Mono, SF Mono, Consolas, monospace"
     scale:
-      display: "72px / 800"
-      h1: "48px / 800"
-      h2: "36px / 700"
-      h3: "24px / 700"
-      body: "18px / 400"
-      small: "14px / 400"
-      caption: "12px / 600"
-    letter-spacing:
-      label: "3px uppercase"
-      heading: "0"
-      body: "0"
+      display-large: "57px / 400 / -0.25px"
+      display-medium: "45px / 400"
+      display-small: "36px / 400"
+      headline-large: "32px / 400"
+      headline-medium: "28px / 400"
+      headline-small: "24px / 400"
+      title-large: "22px / 400"
+      title-medium: "16px / 500 / 0.15px"
+      title-small: "14px / 500 / 0.1px"
+      body-large: "16px / 400 / 0.5px"
+      body-medium: "14px / 400 / 0.25px"
+      body-small: "12px / 400 / 0.4px"
+      label-large: "14px / 500 / 0.1px"
+      label-medium: "12px / 500 / 0.5px"
+      label-small: "11px / 500 / 0.5px"
 
   spacing:
     xs: "4px"
     sm: "8px"
     md: "16px"
     lg: "24px"
-    xl: "40px"
-    xxl: "80px"
+    xl: "32px"
+    xxl: "48px"
 
   radius:
+    none: "0"
+    xs: "4px"
     sm: "8px"
     md: "12px"
     lg: "16px"
-    pill: "9999px"
+    xl: "28px"
+    full: "9999px"
 
-  shadows:
-    card: "0 2px 8px rgba(0,0,0,0.2)"
-    elevated: "0 8px 32px rgba(0,0,0,0.5)"
-    glow-accent: "0 0 80px rgba(249,162,18,0.06)"
-    glow-primary: "0 0 60px rgba(46,42,148,0.15)"
+  elevation:
+    level0: "none"
+    level1: "0 1px 2px rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.15)"
+    level2: "0 1px 2px rgba(0,0,0,0.3), 0 2px 6px 2px rgba(0,0,0,0.15)"
+    level3: "0 4px 8px 3px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.3)"
+    level4: "0 6px 10px 4px rgba(0,0,0,0.15), 0 2px 3px rgba(0,0,0,0.3)"
+    level5: "0 8px 12px 6px rgba(0,0,0,0.15), 0 4px 4px rgba(0,0,0,0.3)"
+
+  motion:
+    duration-short: "200ms"
+    duration-medium: "300ms"
+    duration-long: "500ms"
+    easing-standard: "cubic-bezier(0.2, 0, 0, 1)"
+    easing-emphasized: "cubic-bezier(0.2, 0, 0, 1)"
+    easing-decelerate: "cubic-bezier(0, 0, 0, 1)"
+    easing-accelerate: "cubic-bezier(0.3, 0, 1, 1)"
+
+  components:
+    button:
+      height: "40px"
+      radius: "20px"
+      padding: "0 24px"
+    fab:
+      size: "56px"
+      radius: "16px"
+    card:
+      radius: "12px"
+      padding: "16px"
+    chip:
+      height: "32px"
+      radius: "8px"
+    text-field:
+      height: "56px"
+      radius: "4px 4px 0 0"
+    dialog:
+      radius: "28px"
+    navigation-bar:
+      height: "80px"
+    top-app-bar:
+      height: "64px"
 ---
 
 ## Overview
 
-NeuraForge AI uses a dark, professional visual identity inspired by developer tooling and terminal aesthetics. The design conveys technical authority while remaining approachable. Deep purple gradients create depth, amber accent draws attention to key actions and data, and generous whitespace prevents cognitive overload.
+NeuraForge AI uses Material Design 3 (Material You) as its design foundation. This provides a well-documented, accessible, and widely-adopted design language that works across web, mobile, and desktop. The system uses MUI (Material UI) for React implementations and follows Material 3 guidelines for all other stacks.
 
 **Key Characteristics:**
-- Dark-first design — deep purple gradient backgrounds, never white
-- Terminal-inspired code blocks with syntax highlighting
-- Amber accent used sparingly for CTAs, badges, and key metrics
-- Clean data presentation with cards and tables
-- Generous spacing creating breathing room between sections
-- Professional, engineering-focused tone
+- Clean, light surfaces with subtle elevation for hierarchy
+- Blue primary (#1976D2) for trust and professionalism
+- Purple secondary (#9C27B0) for AI/intelligence associations
+- Amber tertiary (#F9A212) for highlights and attention
+- Roboto font family — the Material standard
+- 8px spacing grid
+- Rounded shapes following M3 shape scale
+- Motion with Material easing curves
 
 ## Colors
 
-### Primary Foundation
-- **Deep Space Purple** (#0F0C2E → #1A1550 → #2A1F6E) — Gradient background. Creates depth and visual hierarchy. The 135° gradient moves from near-black to rich purple.
-- **Surface** (#1A1550) — Card backgrounds and elevated surfaces. Slightly lighter than background for subtle separation.
-- **Surface Elevated** (rgba(255,255,255,0.04)) — Cards, code blocks, interactive elements. Barely-there lightening that creates layers without breaking the dark theme.
+### Primary (Blue)
+- **Primary** (#1976D2) — Main interactive elements: buttons, links, active states, FABs. Conveys reliability and trust.
+- **Primary Container** (#E3F2FD) — Tonal backgrounds for selected states, chips, badges.
 
-### Accent & Interactive
-- **Amber Gold** (#F9A212) — The sole warm accent. Used for: primary CTAs, stat numbers, badges, labels, active states, and the NeuraForge logo mark. Creates focal points against the cool purple foundation.
+### Secondary (Purple)
+- **Secondary** (#9C27B0) — AI-related elements, agent badges, skill indicators. Associates with intelligence and creativity.
+- **Secondary Container** (#F3E5F5) — Tonal backgrounds for secondary elements.
 
-### Text Hierarchy
-- **Pure White** (#FFFFFF) — Headlines, stat numbers, primary content. Maximum contrast for key information.
-- **Lavender** (#B8B5E0) — Body text, descriptions, secondary content. Readable without competing with headlines.
-- **Muted Purple** (#8886B0) — Tertiary text, tech stack details, timestamps. Present but recessive.
-- **Dim Purple** (#6C63A0) — Footnotes, URLs, least important text. Barely visible but accessible.
+### Tertiary (Amber)
+- **Tertiary** (#F9A212) — Highlights, warnings, premium features, attention-drawing elements.
 
-### Functional States
-- **Success Green** (#4CAF50) — Passing tests, working servers, positive metrics, "after" column in comparisons
-- **Error Red** (#EF5350) — Failed tests, broken servers, "before" column in comparisons
-- **Info Blue** (#4FC3F7) — Links, informational highlights
+### Surfaces
+- **Background** (#FAFAFA) — Page background. Slightly warm gray, not pure white.
+- **Surface** (#FFFFFF) — Cards, dialogs, sheets. Pure white for maximum elevation contrast.
+- **Surface Variant** (#F5F5F5) — Alternate sections, input backgrounds.
+- **Outline** (#E0E0E0) — Borders, dividers. Subtle separation.
+
+### Status
+- **Error** (#D32F2F) — Validation errors, failed states, destructive actions
+- **Success** (#2E7D32) — Passing tests, successful operations, positive metrics
+- **Warning** (#ED6C02) — Caution states, pending actions
+- **Info** (#0288D1) — Informational messages, tips
 
 ## Typography
 
-**Primary Font:** Inter — clean, modern, excellent for both UI and long-form reading.
-**Monospace Font:** SF Mono / Fira Code — for code blocks, terminal output, install commands.
+**Roboto** — Material Design's standard typeface. Clean, neutral, excellent readability at all sizes.
+**Roboto Mono** — For code blocks, terminal output, technical data.
 
-### Hierarchy
-- **Display** (72px, weight 800): Brand name "NeuraForge AI" only. Used once per page/slide.
-- **H1** (48px, weight 800): Slide/section titles. "8-Stage Pipeline", "Before vs After".
-- **H2** (36px, weight 700): Sub-section headers within slides.
-- **H3** (24px, weight 700): Card titles, stat labels.
-- **Body** (18px, weight 400): Descriptions, explanations, list items. Line-height 1.6.
-- **Small** (14px, weight 400): Tech details, footnotes, URLs.
-- **Caption/Label** (12px, weight 600): Uppercase labels with 3px letter-spacing. "COVERAGE", "IMPACT", "HOW IT WORKS".
-
-## Layout
-
-### Grid
-- **Max width:** 1080px for content (presentations), 900px for text-heavy pages
-- **Padding:** 60-80px on slides/pages
-- **Card gap:** 14-20px
-- **Section spacing:** 40-60px between major sections
-
-### Cards
-- **Background:** {tokens.colors.surface-elevated}
-- **Border:** 1px solid {tokens.colors.border}
-- **Radius:** {tokens.radius.md} (12px)
-- **Padding:** 20-28px
-- **Hover:** Subtle shadow appears, no color change
-
-### Code Blocks
-- **Background:** rgba(0,0,0,0.3)
-- **Border:** 1px solid {tokens.colors.border}
-- **Radius:** {tokens.radius.md}
-- **Font:** {tokens.typography.font-mono}
-- **Prompt symbol:** {tokens.colors.accent} (❯)
-- **Commands:** {tokens.colors.success} (green)
-- **Comments:** {tokens.colors.text-dim}
+Follow the M3 type scale exactly. Key mappings:
+- Page titles → `headline-large` (32px)
+- Section headers → `headline-small` (24px)
+- Card titles → `title-large` (22px)
+- Body text → `body-large` (16px)
+- Buttons → `label-large` (14px, weight 500)
+- Captions → `body-small` (12px)
 
 ## Components
 
-### Stat Counter
-```
-[large number in white, weight 800]
-[label in amber, uppercase, letter-spacing 2px]
-```
-Used for: agent count, MCP server count, skill count, stack count. Always in a horizontal row with 30-50px gap.
+### Buttons (M3 spec)
+- **Filled:** Primary color background, white text, 20px radius (pill-like), 40px height
+- **Outlined:** Transparent background, primary border, primary text
+- **Text:** No background, no border, primary text — for low-emphasis actions
+- **FAB:** 56px square, 16px radius, primary container color, elevation level 3
+- **Touch target:** Minimum 48px (M3 accessibility requirement)
 
-### Pipeline Stage Card
-```
-[amber numbered badge, 36px square, radius 8px]
-[stage name in white, weight 700]
-[agent name in muted purple]
-[amber badge for key constraint: "Human approves", "Score 90+"]
-```
+### Cards (M3 spec)
+- **Filled:** Surface color, 12px radius, elevation level 1
+- **Outlined:** Surface color, 12px radius, 1px outline border, no elevation
+- **Elevated:** Surface color, 12px radius, elevation level 2
+- **Padding:** 16px internal
 
-### Before/After Table
-```
-[task column in white]
-[before column in error red]
-[after column in success green, weight 700]
-```
+### Text Fields (M3 spec)
+- **Filled:** Surface variant background, 4px top radius, bottom border
+- **Outlined:** Transparent background, 4px radius, full border
+- **Height:** 56px
+- **Label:** Floats above on focus (Material animation)
+- **Error:** Red border + red helper text below
 
-### Section Label
-```
-[amber text, 14px, uppercase, letter-spacing 3px, weight 700]
-```
-Always appears above section title. Examples: "THE PROBLEM", "IMPACT", "COVERAGE".
+### Navigation
+- **Top App Bar:** 64px height, surface color, title in headline-small
+- **Navigation Bar (bottom):** 80px height, 3-5 destinations, active item in primary
+- **Navigation Rail (desktop):** 80px width, vertical icons + labels
+- **Tabs:** 48px height, active tab has primary indicator
 
-## Shapes & Effects
+### Dialogs
+- 28px radius (M3's largest shape)
+- Scrim overlay (rgba(0,0,0,0.32))
+- Title in headline-small, body in body-medium
+- Actions right-aligned: text buttons
 
-### Glow Orbs
-Decorative background elements creating ambient depth:
-- **Accent glow:** 400px circle, {tokens.colors.accent} at 6% opacity, blur 80-100px
-- **Primary glow:** 300px circle, {tokens.colors.primary} at 15% opacity, blur 60px
-- Positioned at corners, never centered
+### Chips
+- 32px height, 8px radius
+- **Assist:** Outlined, for suggestions
+- **Filter:** Tonal, for active filters with checkmark
+- **Input:** Outlined with trailing X for removable items
 
-### Slide Transitions
-- **Clip-path reveal:** `inset(0 100% 0 0)` → `inset(0 0 0 0)` with spring physics
-- **Content entry:** Fade + translateY(30px→0) with staggered delays per element
-- **Scale-in:** For stat counters and stack cards, spring damping 12-14
+## Layout
+
+### Responsive Breakpoints (M3)
+- **Compact:** 0-599px (phone) — single column, bottom nav
+- **Medium:** 600-839px (tablet) — 2 columns, navigation rail
+- **Expanded:** 840px+ (desktop) — 3+ columns, navigation rail or drawer
+
+### Spacing
+- Base unit: 8px
+- Component padding: 16px
+- Section spacing: 24-48px
+- Page margins: 16px (compact), 24px (medium), 32px+ (expanded)
+
+### Content Width
+- Max: 1200px centered on expanded
+- Cards: fill available width in grid
+
+## Motion
+
+Follow M3 motion guidelines:
+- **Standard easing** for most transitions: `cubic-bezier(0.2, 0, 0, 1)`
+- **Duration:** 200ms for small changes, 300ms for medium, 500ms for large
+- **Enter:** Decelerate easing (fast start, slow end)
+- **Exit:** Accelerate easing (slow start, fast end)
+- **Shared axis:** For navigation transitions (forward/backward)
 
 ## Do's and Don'ts
 
 ### Do
-- Use the gradient background on every surface — never white
-- Use amber sparingly — only for CTAs, stats, labels, and the logo
-- Keep code blocks dark with syntax-colored text
-- Use generous spacing — when in doubt, add more whitespace
-- Stagger animations — each element enters 5-10 frames after the previous
+- Use the M3 type scale exactly — don't invent custom sizes
+- Use elevation (shadows) for hierarchy, not borders
+- Use tonal colors (containers) for selected/active states
+- Follow the 8px spacing grid
+- Use Roboto for all UI text
+- Use filled buttons for primary actions, outlined for secondary
+- Minimum 48px touch targets
 
 ### Don't
-- Don't use amber for large background areas — it's an accent, not a surface
-- Don't use pure black (#000) — use the deep purple (#0F0C2E) instead
-- Don't mix font families — Inter for UI, monospace for code, nothing else
-- Don't use borders heavier than 1px — the design relies on subtle separation
-- Don't center-align body text — left-align for readability, center only for headlines
+- Don't use custom shadows — use the 5-level elevation scale
+- Don't use sharp corners — minimum 4px radius on everything
+- Don't mix font families — Roboto for UI, Roboto Mono for code
+- Don't use color alone to convey meaning — add icons/text for accessibility
+- Don't skip motion — transitions make the UI feel responsive
+- Don't use more than 3 colors prominently on one screen
