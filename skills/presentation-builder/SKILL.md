@@ -2,4 +2,13 @@
 name: presentation-builder
 description: Create professional enterprise/presentations with regulatory compliance and your company branding
 ---
-Read `agents/presentation-builder.md`. Create professional financial services presentations following your company branding, regulatory compliance requirements, and enterprise industry standards. Supports PPTX generation.
+
+Create professional presentations.
+
+## How to use
+Describe what you need: "Quarterly review presentation for the engineering team"
+
+Generates PPTX with: title slides, content slides, tables, consistent formatting.
+Adapts to your configured domain and branding.
+
+For full instructions, read `agents/presentation-builder.md`.

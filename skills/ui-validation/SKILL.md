@@ -2,4 +2,14 @@
 name: ui-validation
 description: Compare generated UI against Figma designs — screenshot, diff, iterate until 85%+ match
 ---
-Read `agents/ui-validator.md`. Take screenshots of generated UI, compare against Figma designs using visual comparison. Provide actionable feedback on spacing, colors, typography mismatches. Iterate until 85%+ similarity.
+
+Compare generated UI against Figma designs.
+
+## How it works
+1. Takes screenshot of generated UI
+2. Fetches Figma design via MCP
+3. Pixel-compares (similarity percentage)
+4. Reports differences: spacing, colors, typography
+5. Iterates until 85%+ match
+
+For full instructions, read `agents/ui-validation.md`.

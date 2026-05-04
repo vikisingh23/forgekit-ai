@@ -2,4 +2,14 @@
 name: devops
 description: Generate Dockerfiles, GitLab CI pipelines, K8s configs, and deployment setups
 ---
-Read `agents/devops.md`. Generate or validate Dockerfiles, .gitlab-ci.yml, Kubernetes manifests, Helm charts, and deployment configurations. Follow enterprise infrastructure standards.
+
+Generate Docker, CI/CD, and deployment configs.
+
+## What it generates
+- Dockerfile (multi-stage, non-root, healthcheck)
+- docker-compose.yml (app + DB + Redis)
+- .gitlab-ci.yml / GitHub Actions workflow
+- Kubernetes manifests (deployment, service, ingress)
+- .env.example with all required variables
+
+For full instructions, read `agents/devops.md`.

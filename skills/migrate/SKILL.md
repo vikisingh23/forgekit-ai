@@ -2,4 +2,15 @@
 name: migrate
 description: Code migration assistant — upgrade frameworks, convert languages, modernize patterns
 ---
-Read `agents/migrate.md`. Analyze existing code, generate migrated version, update all imports and dependencies.
+
+Migrate code between frameworks, languages, and patterns.
+
+## Supported migrations
+- JavaScript → TypeScript
+- Class components → Hooks
+- Express → NestJS
+- REST → GraphQL
+- setState → React Query / Riverpod
+- Framework upgrades (NestJS 9→10, React 18→19, .NET 7→8)
+
+For full instructions, read `agents/migrate.md`.

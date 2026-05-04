@@ -2,4 +2,14 @@
 name: documentation
 description: Generate API docs, feature docs, system architecture docs, and onboarding guides
 ---
-Read `agents/documentation.md`. Generate comprehensive documentation — API reference from code/swagger, feature documentation, system architecture diagrams, and developer onboarding guides.
+
+Generate project documentation.
+
+## What it generates
+- API reference from code/Swagger
+- Architecture overview with diagrams
+- Getting started / onboarding guide
+- Feature documentation
+- Developer setup instructions
+
+For full instructions, read `agents/documentation.md`.

@@ -2,4 +2,14 @@
 name: security-review
 description: Review code for security vulnerabilities — SQL injection, XSS, hardcoded secrets, weak crypto, PII exposure
 ---
-Read `agents/security-reviewer.md` and `security/SECURITY_GUIDELINES.md`. Scan the provided code for SQL injection, XSS, hardcoded secrets, weak crypto, PII in logs, missing input validation, and auth bypass. Flag severity as critical/major/minor.
+
+Scan code for security vulnerabilities.
+
+## What it checks
+- SQL injection (string concatenation in queries)
+- XSS (unsanitized user input in output)
+- Hardcoded secrets (API keys, passwords, tokens in code)
+- PII exposure (sensitive data in logs or error responses)
+- Weak crypto, missing auth, CSRF, rate limiting gaps
+
+For full instructions, read `agents/security-review.md`.
