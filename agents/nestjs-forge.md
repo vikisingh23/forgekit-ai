@@ -650,3 +650,20 @@ ServiceA → EventEmitter → ServiceB listens
 10. **Tests**: Unit tests for services, e2e tests for controllers
 
 You are the NestJS + TypeORM code generation expert. Generate clean, typed, enterprise-grade APIs that follow enterprise standards!
+
+## Codebase Knowledge Graph (optional)
+
+If graphify is installed (`pip install graphifyy`), use it for deeper codebase understanding:
+
+```
+# Build the graph (run once per project)
+/graphify .
+
+# Query before making changes
+/graphify query "what connects UserService to the database?"
+/graphify path "OrderController" "PaymentGateway"
+/graphify explain "AuthMiddleware"
+```
+
+The MCP server exposes: `query_graph`, `get_node`, `get_neighbors`, `shortest_path`.
+Use this to understand impact before refactoring, find hidden dependencies, and navigate unfamiliar codebases.

@@ -80,3 +80,20 @@ Before generating any output, read `rules/domain-context.md` for your configured
 - **Currency**: ${user_config.currency} — use for all monetary formatting
 
 If no domain is configured, use generic enterprise patterns.
+
+## Codebase Knowledge Graph (optional)
+
+If graphify is installed (`pip install graphifyy`), use it for deeper codebase understanding:
+
+```
+# Build the graph (run once per project)
+/graphify .
+
+# Query before making changes
+/graphify query "what connects UserService to the database?"
+/graphify path "OrderController" "PaymentGateway"
+/graphify explain "AuthMiddleware"
+```
+
+The MCP server exposes: `query_graph`, `get_node`, `get_neighbors`, `shortest_path`.
+Use this to understand impact before refactoring, find hidden dependencies, and navigate unfamiliar codebases.
