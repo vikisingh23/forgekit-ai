@@ -1,0 +1,6 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "doc-generator",
+  "prompt": "file://doc-generator.md",
+  "tools": ["fs_read", "fs_write", "execute_bash", "code", "grep", "glob"]
+}
