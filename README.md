@@ -151,6 +151,10 @@ Enforced across all 7 stacks by every forge and reviewer:
 
 PRs welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Acknowledgements
+
+- Codebase knowledge graph powered by [graphify](https://github.com/safishamsi/graphify) by Safi Shamsi
+
 ## License
 
 Apache 2.0
