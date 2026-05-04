@@ -1,0 +1,41 @@
+name: Validate
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON files
+        run: |
+          echo "Checking JSON files..."
+          for f in $(find . -name "*.json" -not -path "./node_modules/*"); do
+            python3 -m json.tool "$f" > /dev/null || { echo "❌ Invalid JSON: $f"; exit 1; }
+          done
+          echo "✅ All JSON valid"
+
+      - name: Check skills have SKILL.md
+        run: |
+          echo "Checking skills..."
+          for dir in skills/*/; do
+            if [ ! -f "${dir}SKILL.md" ]; then
+              echo "❌ Missing SKILL.md in $dir"
+              exit 1
+            fi
+          done
+          echo "✅ All skills have SKILL.md"
+
+      - name: Check agents exist
+        run: |
+          echo "Checking agents..."
+          count=$(ls agents/*.md | wc -l)
+          echo "✅ Found $count agent files"
+
+      - name: Inventory
+        run: |
+          echo "📊 Inventory:"
+          echo "  Agents: $(ls agents/*.md | wc -l)"
+          echo "  Skills: $(ls skills/*/SKILL.md | wc -l)"
+          echo "  MCP Servers: $(python3 -c "import json; print(len(json.load(open('.mcp.json'))['mcpServers']))")"
+          echo "  Rules: $(find rules -name '*.md' | wc -l)"

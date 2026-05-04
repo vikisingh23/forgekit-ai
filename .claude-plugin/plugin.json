@@ -1,0 +1,47 @@
+{
+  "name": "neuraforge-ai",
+  "version": "1.0.0",
+  "description": "AI-powered development platform — 24 agents, 19 MCP servers, 21 skills for end-to-end software development across React, React Native, Flutter, .NET, and NestJS",
+  "author": {
+    "name": "Vikas Singh",
+    "url": "https://github.com/vikisingh23"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "ai-agents", "mcp", "code-generation", "code-review", "testing",
+    "react", "react-native", "flutter", "dotnet", "nestjs", "typeorm",
+    "enterprise", "sdlc", "agentic", "claude-code", "kiro-cli"
+  ],
+  "userConfig": {
+    "industry": {
+      "type": "string",
+      "title": "Industry Domain (optional)",
+      "description": "Your industry — e.g., financial-services, healthcare, e-commerce, saas, edtech, logistics. Leave blank for generic.",
+      "default": ""
+    },
+    "country": {
+      "type": "string",
+      "title": "Country / Region (optional)",
+      "description": "Your regulatory region — e.g., india, us, uk, eu, singapore. Affects compliance rules and formatting.",
+      "default": ""
+    },
+    "domain_context": {
+      "type": "string",
+      "title": "Domain Details (optional)",
+      "description": "Specific domain context — e.g., 'SEBI-regulated mutual fund AMC', 'HIPAA-compliant telehealth', 'PCI-DSS payment processor'. Leave blank for generic.",
+      "default": ""
+    },
+    "currency": {
+      "type": "string",
+      "title": "Currency (optional)",
+      "description": "Primary currency symbol and format — e.g., ₹ (Indian), $ (US), £ (UK), € (EU)",
+      "default": "$"
+    },
+    "figma_token": {
+      "type": "string",
+      "title": "Figma Token (optional)",
+      "description": "Figma Personal Access Token for design-to-code",
+      "sensitive": true
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "marketplace": "neuraforge-ai",
+  "description": "AI-powered development platform — agents, MCP servers, and skills for end-to-end software development",
+  "plugins": [
+    {
+      "name": "neuraforge-ai",
+      "description": "24 agents + 19 MCP servers + 21 skills across 5 stacks",
+      "path": "."
+    }
+  ]
+}
