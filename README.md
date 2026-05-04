@@ -26,7 +26,10 @@
 
 **Auto-detect** (runs in your project directory):
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vikisingh23/neuraforge-ai/main/install.sh | bash
+node <(curl -fsSL https://raw.githubusercontent.com/vikisingh23/neuraforge-ai/main/install.mjs)
+
+# Or on Windows (PowerShell):
+git clone https://github.com/vikisingh23/neuraforge-ai.git; node neuraforge-ai/install.mjs
 ```
 
 Or install for a specific platform:
