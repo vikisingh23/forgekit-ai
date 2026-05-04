@@ -24,16 +24,49 @@
 
 ## Install
 
-**Claude Code** — two commands:
+**Auto-detect** (runs in your project directory):
+```bash
+curl -fsSL https://raw.githubusercontent.com/vikisingh23/neuraforge-ai/main/install.sh | bash
+```
+
+Or install for a specific platform:
+
+<details>
+<summary><strong>Claude Code</strong></summary>
+
 ```bash
 /plugin marketplace add vikisingh23/neuraforge-ai
 /plugin install neuraforge-ai
 ```
+</details>
 
-**Kiro CLI** — one command:
-```bash
-kiro-cli chat --agent forge
-```
+<details>
+<summary><strong>Cursor</strong></summary>
+
+Import rules from GitHub: Settings → Rules → Import → `https://github.com/vikisingh23/neuraforge-ai.git`
+
+Or manually: clone the repo and copy `.cursor/` to your project.
+</details>
+
+<details>
+<summary><strong>Gemini CLI</strong></summary>
+
+Clone and copy `.gemini/settings.json` + `AGENTS.md` to your project. Gemini auto-discovers both.
+</details>
+
+<details>
+<summary><strong>GitHub Copilot CLI</strong></summary>
+
+Copy `AGENTS.md` to your project root. Copilot reads it automatically.
+</details>
+
+<details>
+<summary><strong>Codex / OpenCode / Kiro CLI</strong></summary>
+
+Copy `AGENTS.md` + `agents/` + `rules/` to your project. All three auto-discover `AGENTS.md`.
+
+Kiro: `kiro-cli chat --agent forge`
+</details>
 
 Works on Windows, Mac, Linux. Needs Node.js 18+.
 
