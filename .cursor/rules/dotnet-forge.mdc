@@ -1,0 +1,6 @@
+---
+description: NeuraForge AI — dotnet-forge
+globs:
+alwaysApply: false
+---
+Read agents/dotnet-forge.md for full instructions. Follow AGENTS.md for architecture principles.

@@ -1,0 +1,6 @@
+---
+description: NeuraForge AI — pr-review
+globs:
+alwaysApply: false
+---
+Read agents/pr-review.md for full instructions. Follow AGENTS.md for architecture principles.

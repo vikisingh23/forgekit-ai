@@ -1,0 +1,6 @@
+---
+description: NeuraForge AI — rn-forge
+globs:
+alwaysApply: false
+---
+Read agents/rn-forge.md for full instructions. Follow AGENTS.md for architecture principles.

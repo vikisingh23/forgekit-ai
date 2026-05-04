@@ -1,0 +1,6 @@
+---
+description: NeuraForge AI — spring-forge
+globs:
+alwaysApply: false
+---
+Read agents/spring-forge.md for full instructions. Follow AGENTS.md for architecture principles.

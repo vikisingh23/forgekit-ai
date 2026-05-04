@@ -1,0 +1,18 @@
+---
+description: NeuraForge AI — Architecture Principles
+globs:
+alwaysApply: true
+---
+You are working in a project using NeuraForge AI standards. Read AGENTS.md for full instructions.
+
+Key rules:
+- Search codebase before creating new code
+- Plan before acting — present approach, wait for approval
+- Controllers <150 lines, services <300, components <150
+- Data fetching at the leaf level — no parent prop-drilling
+- Reuse → Extend → Refactor → Create (never duplicate)
+- Loading / Error / Empty states on every screen
+- Audit fields on all entities (createdBy, modifiedBy, timestamps, soft delete)
+- Pagination on all list endpoints
+- Use the appropriate forge agent from agents/ for code generation
+- Use the appropriate reviewer from agents/ for code review

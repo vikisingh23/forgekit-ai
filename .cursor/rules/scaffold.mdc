@@ -1,0 +1,6 @@
+---
+description: NeuraForge AI — scaffold
+globs:
+alwaysApply: false
+---
+Read agents/scaffold.md for full instructions. Follow AGENTS.md for architecture principles.

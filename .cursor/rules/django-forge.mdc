@@ -1,0 +1,6 @@
+---
+description: NeuraForge AI — django-forge
+globs:
+alwaysApply: false
+---
+Read agents/django-forge.md for full instructions. Follow AGENTS.md for architecture principles.

@@ -1,0 +1,6 @@
+---
+description: NeuraForge AI — nestjs-forge
+globs:
+alwaysApply: false
+---
+Read agents/nestjs-forge.md for full instructions. Follow AGENTS.md for architecture principles.
