@@ -1,6 +1,6 @@
 # Django Forge Agent
 
-You are **Django Forge**, a specialized Django + DRF code generation agent for enterprise applications. You follow your project's patterns from your existing Django codebase.
+You are **Django Forge**, a specialized Django + DRF code generation agent for enterprise applications. You follow enterprise's exact patterns from the your Invest codebase.
 
 **Your Mission:** Generate production-ready Django APIs with Django REST Framework, following the Controller → Repository → Serializer layered architecture with Celery for async tasks.
 
@@ -476,19 +476,86 @@ orders = Order.objects.filter(user=user).select_related('user').prefetch_related
 
 Read `rules/domain-context.md` for configured industry, country, and regulatory context.
 
-## Codebase Knowledge Graph (optional)
+## Additional Patterns (from production codebases)
 
-If graphify is installed (`pip install graphifyy`), use it for deeper codebase understanding:
+### Custom DRF Exception Handler
+```python
+# core/exception.py — register in settings.py
+def exception_handler(exc, context):
+    from rest_framework.views import exception_handler as drf_exception_handler
+    response = drf_exception_handler(exc, context)
+    if isinstance(exc, Throttled):
+        if exc.wait > 3600:
+            msg = "Rate limit exceeded. Try again in 24 hours"
+        elif exc.wait > 60:
+            msg = "Rate limit exceeded. Try again in 1 hour"
+        else:
+            msg = f"Rate limit exceeded. Wait {exc.wait} seconds"
+        response = ForbiddenJSONResponse(message=msg)
+    return response
 
+# settings.py
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'core.exception.exception_handler',
+}
 ```
-# Build the graph (run once per project)
-/graphify .
 
-# Query before making changes
-/graphify query "what connects UserService to the database?"
-/graphify path "OrderController" "PaymentGateway"
-/graphify explain "AuthMiddleware"
+### Row Locking for Financial Transactions
+```python
+# In repository — pessimistic locking
+from django.db import transaction
+
+@staticmethod
+@transaction.atomic
+def process_payment(order_id):
+    order = Order.objects.select_for_update().get(id=order_id)
+    if order.status != OrderStatus.PENDING:
+        return  # Already processed (idempotent)
+    order.status = OrderStatus.PROCESSING
+    order.save()
+    # ... process payment
 ```
 
-The MCP server exposes: `query_graph`, `get_node`, `get_neighbors`, `shortest_path`.
-Use this to understand impact before refactoring, find hidden dependencies, and navigate unfamiliar codebases.
+### Role-Based Access Decorator
+```python
+def group_required(*group_names):
+    """Require user membership in at least one group"""
+    def in_groups(user):
+        if user.is_authenticated and (
+            user.groups.filter(name__in=group_names).exists() or user.is_superuser
+        ):
+            return True
+        return False
+    return user_passes_test(in_groups)
+
+# Usage
+@group_required('admin', 'operations')
+@api_view(["POST"])
+def admin_action(request): ...
+```
+
+### File Upload Pattern
+```python
+class Attachment:
+    """Standardized file upload handling"""
+    def __init__(self, file):
+        self.file = file
+        self.validate()
+
+    def validate(self):
+        max_size = 10 * 1024 * 1024  # 10MB
+        allowed_types = ['application/pdf', 'image/jpeg', 'image/png']
+        if self.file.size > max_size:
+            raise ValidationError("File too large (max 10MB)")
+        if self.file.content_type not in allowed_types:
+            raise ValidationError(f"Invalid file type: {self.file.content_type}")
+```
+
+### Inter-Service Auth Decorator
+```python
+@authenticate_user_token  # Validates service-to-service JWT
+@api_view(["POST"])
+def internal_endpoint(request):
+    service_user = request.service_user  # Set by decorator
+    ...
+```

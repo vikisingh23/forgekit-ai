@@ -75,3 +75,31 @@ async onFailed(job: Job, error: Error) {
   }
 }
 ```
+
+## Scheduled / Deferred Tasks (Celery Beat)
+
+```python
+# settings.py — periodic tasks
+CELERY_BEAT_SCHEDULE = {
+    'cleanup-stale-orders': {
+        'task': 'core.tasks.cleanup_stale_orders',
+        'schedule': timedelta(hours=6),
+    },
+    'send-daily-digest': {
+        'task': 'core.tasks.send_daily_digest',
+        'schedule': crontab(hour=9, minute=0),  # 9 AM daily
+    },
+}
+
+# Deferred one-off task
+send_notification.apply_async(
+    args=[event_name, data],
+    eta=timezone.now() + timedelta(hours=1),  # Run 1 hour from now
+)
+```
+
+### Rules for Scheduled Tasks
+1. **Idempotent** — safe to run twice if scheduler fires duplicate
+2. **Short-lived** — if >5 min, break into smaller tasks
+3. **Monitored** — alert if task doesn't complete within expected window
+4. **No overlapping** — use `solo` or lock to prevent concurrent runs

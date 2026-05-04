@@ -89,3 +89,33 @@ CacheModule.register({
 5. **Monitor hit rates** — below 80% means wrong caching strategy
 6. **Graceful degradation** — if Redis is down, fall through to DB
 7. **No sensitive data** — don't cache PII, tokens, or passwords in shared cache
+
+## Cache Key Builder Pattern
+
+Standardize key construction across all services:
+
+```python
+CACHE_KEY_SEPARATOR = "_"
+DEFAULT_TIMEOUT = 21600  # 6 hours
+
+def build_cache_key(identifier: str, prefix: str) -> str:
+    """Build standardized cache key: prefix_identifier"""
+    return CACHE_KEY_SEPARATOR.join((prefix, identifier))
+
+def build_cache_keys(identifiers: list, prefix: str) -> list:
+    """Build multiple cache keys"""
+    return [build_cache_key(id, prefix) for id in identifiers]
+
+# Usage
+key = build_cache_key("SCH001", "scheme_nav")  # → "scheme_nav_SCH001"
+keys = build_cache_keys(["INV001", "INV002"], "portfolio")  # → ["portfolio_INV001", "portfolio_INV002"]
+```
+
+### Key Naming Convention
+```
+{service}_{entity}_{identifier}
+
+scheme_nav_SCH001
+portfolio_holdings_INV001
+notification_template_WELCOME_EMAIL
+```

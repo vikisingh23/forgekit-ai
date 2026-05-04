@@ -101,3 +101,12 @@ Score: XX/100
 🟢 Minor: [line X] Could use select_related to avoid N+1
 💡 Suggestion: Extract this to a Celery task
 ```
+
+### Production Hygiene Flags
+- [ ] **print() in production code** — flag as major. Must use `logger.debug/info/warning/error`
+- [ ] **db.sqlite3 committed** — flag. Must be in .gitignore
+- [ ] **Private keys committed** (*.pem, *.key) — flag as CRITICAL. Must use env vars or vault
+- [ ] **.env committed** — flag as CRITICAL. Must be in .gitignore
+- [ ] **.DS_Store committed** — flag. Add to .gitignore
+- [ ] **Heavy imports at module level** — flag if importing ffmpeg/PIL/etc globally. Use lazy imports
+- [ ] **celerybeat.pid committed** — flag. Add to .gitignore

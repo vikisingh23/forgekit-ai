@@ -88,3 +88,32 @@ deploy-production:
 | `develop` | Staging | Auto |
 | `main` | Production | Manual approval |
 | `hotfix/*` | Production | Fast-track (still needs approval) |
+
+## Django-Specific Pipeline
+
+```yaml
+stages:
+  - build
+  - deploy-api        # Django WSGI/ASGI server
+  - deploy-celery     # Celery worker
+  - deploy-staff      # Django admin (if separate)
+  - coverage
+  - sonarqube
+  - sentry-release    # Error tracking
+  - notify            # Slack/Teams notification
+
+deploy-api:
+  stage: deploy-api
+  script:
+    - docker build -f compose/Dockerfile -t $REGISTRY/$IMAGE:$TAG .
+    - docker push $REGISTRY/$IMAGE:$TAG
+    - kubectl set image deployment/api api=$REGISTRY/$IMAGE:$TAG
+
+deploy-celery:
+  stage: deploy-celery
+  script:
+    - kubectl set image deployment/celery-worker worker=$REGISTRY/$IMAGE:$TAG
+  # Same image, different entrypoint (celery worker vs gunicorn)
+```
+
+### Key: API and Celery workers deploy separately but use the same Docker image.
