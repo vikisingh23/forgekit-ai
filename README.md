@@ -107,6 +107,8 @@ Each stage works independently too — use what you need.
 |-------|----------|--------|------|
 | **.NET Core** | `forge` | `dotnet-reviewer` | xUnit + Moq |
 | **NestJS + TypeORM** | `nestjs-forge` | `nestjs-reviewer` | Jest + supertest |
+| **Django + DRF** | `django-forge` | `django-reviewer` | pytest + DRF test |
+| **Spring Boot + JPA** | `spring-forge` | `spring-reviewer` | JUnit 5 + Mockito |
 | **React** | `react-forge` | `react-reviewer` | Vitest + RTL |
 | **React Native** | `rn-forge` | `rn-reviewer` | Jest + RNTL |
 | **Flutter** | `flutter-forge` | `flutter-reviewer` | flutter_test + mocktail |
