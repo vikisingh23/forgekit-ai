@@ -1,113 +1,192 @@
-# Design
+---
+# DESIGN.md — NeuraForge AI Visual Identity
+# Google Stitch / design.md specification (Apache 2.0)
+# https://github.com/google-labs-code/design.md
 
-How NeuraForge AI is designed and why.
+name: NeuraForge AI
+version: 1.0.0
 
-## Core Idea
+tokens:
+  colors:
+    primary: "#2E2A94"
+    primary-dark: "#1A1744"
+    accent: "#F9A212"
+    background: "#0F0C2E"
+    surface: "#1A1550"
+    surface-elevated: "rgba(255,255,255,0.04)"
+    border: "rgba(255,255,255,0.08)"
+    text-primary: "#FFFFFF"
+    text-secondary: "#B8B5E0"
+    text-muted: "#8886B0"
+    text-dim: "#6C63A0"
+    success: "#4CAF50"
+    error: "#EF5350"
+    warning: "#F9A212"
+    info: "#4FC3F7"
 
-Most AI coding tools help you write code faster. NeuraForge helps you write code **consistently** — across teams, stacks, and time.
+  typography:
+    font-family: "Inter, system-ui, -apple-system, sans-serif"
+    font-mono: "SF Mono, Fira Code, Consolas, monospace"
+    scale:
+      display: "72px / 800"
+      h1: "48px / 800"
+      h2: "36px / 700"
+      h3: "24px / 700"
+      body: "18px / 400"
+      small: "14px / 400"
+      caption: "12px / 600"
+    letter-spacing:
+      label: "3px uppercase"
+      heading: "0"
+      body: "0"
 
-The insight: the hard part of software development isn't writing code. It's maintaining architecture standards, catching the same bugs in review, onboarding new developers to existing patterns, and ensuring every team follows the same conventions. AI agents can enforce this automatically.
+  spacing:
+    xs: "4px"
+    sm: "8px"
+    md: "16px"
+    lg: "24px"
+    xl: "40px"
+    xxl: "80px"
 
-## Architecture
+  radius:
+    sm: "8px"
+    md: "12px"
+    lg: "16px"
+    pill: "9999px"
 
+  shadows:
+    card: "0 2px 8px rgba(0,0,0,0.2)"
+    elevated: "0 8px 32px rgba(0,0,0,0.5)"
+    glow-accent: "0 0 80px rgba(249,162,18,0.06)"
+    glow-primary: "0 0 60px rgba(46,42,148,0.15)"
+---
+
+## Overview
+
+NeuraForge AI uses a dark, professional visual identity inspired by developer tooling and terminal aesthetics. The design conveys technical authority while remaining approachable. Deep purple gradients create depth, amber accent draws attention to key actions and data, and generous whitespace prevents cognitive overload.
+
+**Key Characteristics:**
+- Dark-first design — deep purple gradient backgrounds, never white
+- Terminal-inspired code blocks with syntax highlighting
+- Amber accent used sparingly for CTAs, badges, and key metrics
+- Clean data presentation with cards and tables
+- Generous spacing creating breathing room between sections
+- Professional, engineering-focused tone
+
+## Colors
+
+### Primary Foundation
+- **Deep Space Purple** (#0F0C2E → #1A1550 → #2A1F6E) — Gradient background. Creates depth and visual hierarchy. The 135° gradient moves from near-black to rich purple.
+- **Surface** (#1A1550) — Card backgrounds and elevated surfaces. Slightly lighter than background for subtle separation.
+- **Surface Elevated** (rgba(255,255,255,0.04)) — Cards, code blocks, interactive elements. Barely-there lightening that creates layers without breaking the dark theme.
+
+### Accent & Interactive
+- **Amber Gold** (#F9A212) — The sole warm accent. Used for: primary CTAs, stat numbers, badges, labels, active states, and the NeuraForge logo mark. Creates focal points against the cool purple foundation.
+
+### Text Hierarchy
+- **Pure White** (#FFFFFF) — Headlines, stat numbers, primary content. Maximum contrast for key information.
+- **Lavender** (#B8B5E0) — Body text, descriptions, secondary content. Readable without competing with headlines.
+- **Muted Purple** (#8886B0) — Tertiary text, tech stack details, timestamps. Present but recessive.
+- **Dim Purple** (#6C63A0) — Footnotes, URLs, least important text. Barely visible but accessible.
+
+### Functional States
+- **Success Green** (#4CAF50) — Passing tests, working servers, positive metrics, "after" column in comparisons
+- **Error Red** (#EF5350) — Failed tests, broken servers, "before" column in comparisons
+- **Info Blue** (#4FC3F7) — Links, informational highlights
+
+## Typography
+
+**Primary Font:** Inter — clean, modern, excellent for both UI and long-form reading.
+**Monospace Font:** SF Mono / Fira Code — for code blocks, terminal output, install commands.
+
+### Hierarchy
+- **Display** (72px, weight 800): Brand name "NeuraForge AI" only. Used once per page/slide.
+- **H1** (48px, weight 800): Slide/section titles. "8-Stage Pipeline", "Before vs After".
+- **H2** (36px, weight 700): Sub-section headers within slides.
+- **H3** (24px, weight 700): Card titles, stat labels.
+- **Body** (18px, weight 400): Descriptions, explanations, list items. Line-height 1.6.
+- **Small** (14px, weight 400): Tech details, footnotes, URLs.
+- **Caption/Label** (12px, weight 600): Uppercase labels with 3px letter-spacing. "COVERAGE", "IMPACT", "HOW IT WORKS".
+
+## Layout
+
+### Grid
+- **Max width:** 1080px for content (presentations), 900px for text-heavy pages
+- **Padding:** 60-80px on slides/pages
+- **Card gap:** 14-20px
+- **Section spacing:** 40-60px between major sections
+
+### Cards
+- **Background:** {tokens.colors.surface-elevated}
+- **Border:** 1px solid {tokens.colors.border}
+- **Radius:** {tokens.radius.md} (12px)
+- **Padding:** 20-28px
+- **Hover:** Subtle shadow appears, no color change
+
+### Code Blocks
+- **Background:** rgba(0,0,0,0.3)
+- **Border:** 1px solid {tokens.colors.border}
+- **Radius:** {tokens.radius.md}
+- **Font:** {tokens.typography.font-mono}
+- **Prompt symbol:** {tokens.colors.accent} (❯)
+- **Commands:** {tokens.colors.success} (green)
+- **Comments:** {tokens.colors.text-dim}
+
+## Components
+
+### Stat Counter
 ```
-┌─────────────────────────────────────────────────┐
-│                   User Prompt                    │
-│         "Build a CRUD API for orders"            │
-└──────────────────────┬──────────────────────────┘
-                       │
-                       ▼
-┌─────────────────────────────────────────────────┐
-│              AGENTS.md (router)                  │
-│   Detects stack → routes to correct agent        │
-└──────────────────────┬──────────────────────────┘
-                       │
-          ┌────────────┼────────────┐
-          ▼            ▼            ▼
-    ┌──────────┐ ┌──────────┐ ┌──────────┐
-    │  Agent   │ │  Rules   │ │   MCP    │
-    │ Prompts  │ │  Files   │ │ Servers  │
-    │          │ │          │ │          │
-    │ agents/  │ │ rules/   │ │.mcp.json │
-    │ *.md     │ │ *.md     │ │ 22 tools │
-    └──────────┘ └──────────┘ └──────────┘
+[large number in white, weight 800]
+[label in amber, uppercase, letter-spacing 2px]
+```
+Used for: agent count, MCP server count, skill count, stack count. Always in a horizontal row with 30-50px gap.
+
+### Pipeline Stage Card
+```
+[amber numbered badge, 36px square, radius 8px]
+[stage name in white, weight 700]
+[agent name in muted purple]
+[amber badge for key constraint: "Human approves", "Score 90+"]
 ```
 
-### Three layers
-
-**1. Agent Prompts** (`agents/*.md`) — The instructions. Each agent is a detailed prompt that tells the AI model how to behave for a specific task. They contain code patterns, anti-patterns, decision trees, and examples. These are the core IP.
-
-**2. Rules** (`rules/*.md`) — The standards. Shared across all agents. Architecture principles, naming conventions, security checklists, testing strategy. An agent references rules but doesn't duplicate them.
-
-**3. MCP Servers** (`.mcp.json`) — The tools. External capabilities like Figma access, Swagger parsing, SonarQube analysis, load testing. Agents use these when they need to interact with external systems.
-
-## Design Decisions
-
-### Why markdown files, not code?
-
-Agent prompts are markdown because:
-- Every AI platform reads markdown (Claude Code, Cursor, Gemini, Codex)
-- No build step, no compilation, no runtime
-- Easy to read, review, and modify
-- Version controlled with git like any other code
-- No vendor lock-in — works with any LLM
-
-### Why one agent per task, not one mega-agent?
-
-A single "do everything" agent would be too large for any model's context window and too vague to be useful. Specialized agents:
-- Fit in context (each is 200-800 lines, not 10,000)
-- Have specific, testable behavior
-- Can be improved independently
-- Can be composed (forge → reviewer → test-forge)
-
-### Why plan-before-act?
-
-Every forge agent searches the codebase and presents a plan before generating code. This prevents:
-- Duplicating existing components
-- Creating files that conflict with existing architecture
-- Generating code the user didn't want
-- Missing reuse opportunities
-
-### Why 7 stacks with the same principles?
-
-The architecture principles (thin controllers, leaf-level data fetching, no god classes, composition over inheritance) are universal. The implementation differs per stack but the thinking is the same. This means:
-- A .NET developer and a NestJS developer follow the same mental model
-- Code reviews use the same criteria regardless of stack
-- New stack support is additive, not a rewrite
-
-### Why domain-aware?
-
-A financial services app needs SEBI compliance, audit trails, and idempotency. A healthcare app needs HIPAA, PHI encryption, and consent management. Rather than building separate tools per industry, agents adapt based on a single configuration. The domain context is a prompt modifier, not a code change.
-
-### Why skills AND agents?
-
-- **Skills** (`skills/*/SKILL.md`) = entry points. Short descriptions that tell the AI platform when to activate. Like a menu.
-- **Agents** (`agents/*.md`) = full instructions. The detailed prompt with patterns, examples, and rules. Like the recipe.
-
-Skills exist because Claude Code's plugin system discovers them. Agents exist because the actual work needs detailed instructions. Other platforms (Cursor, Codex) skip skills and read `AGENTS.md` directly.
-
-## File Naming Conventions
-
+### Before/After Table
 ```
-agents/forge.md              — .NET code generation
-agents/nestjs-forge.md       — NestJS code generation (stack prefix)
-agents/dotnet-reviewer.md    — .NET code review (stack + role)
-agents/debug.md              — debugging (no stack — works for all)
-rules/core/ARCHITECTURE_PRINCIPLES.md  — shared across all stacks
-rules/backend/CACHING_PATTERNS.md      — backend-specific
-rules/frontend/UX_STATES.md            — frontend-specific
-rules/security/RATE_LIMITING.md        — security-specific
+[task column in white]
+[before column in error red]
+[after column in success green, weight 700]
 ```
 
-## What This Is Not
+### Section Label
+```
+[amber text, 14px, uppercase, letter-spacing 3px, weight 700]
+```
+Always appears above section title. Examples: "THE PROBLEM", "IMPACT", "COVERAGE".
 
-- **Not a framework** — no runtime, no dependencies, no build step
-- **Not a SaaS** — nothing hosted, nothing to sign up for
-- **Not model-specific** — works with Claude, GPT, Gemini, or any LLM
-- **Not a replacement for developers** — it's a tool that enforces standards. Humans make all decisions.
+## Shapes & Effects
 
-## Evolution
+### Glow Orbs
+Decorative background elements creating ambient depth:
+- **Accent glow:** 400px circle, {tokens.colors.accent} at 6% opacity, blur 80-100px
+- **Primary glow:** 300px circle, {tokens.colors.primary} at 15% opacity, blur 60px
+- Positioned at corners, never centered
 
-v1 (current): Agent prompts + rules + MCP configs. Works but agents can't self-improve.
+### Slide Transitions
+- **Clip-path reveal:** `inset(0 100% 0 0)` → `inset(0 0 0 0)` with spring physics
+- **Content entry:** Fade + translateY(30px→0) with staggered delays per element
+- **Scale-in:** For stat counters and stack cards, spring damping 12-14
 
-Future: Agents that learn from your codebase (via graphify), remember past decisions (via memory MCP), and adapt rules based on team feedback. The architecture supports this — agents already reference external knowledge, they just need better sources.
+## Do's and Don'ts
+
+### Do
+- Use the gradient background on every surface — never white
+- Use amber sparingly — only for CTAs, stats, labels, and the logo
+- Keep code blocks dark with syntax-colored text
+- Use generous spacing — when in doubt, add more whitespace
+- Stagger animations — each element enters 5-10 frames after the previous
+
+### Don't
+- Don't use amber for large background areas — it's an accent, not a surface
+- Don't use pure black (#000) — use the deep purple (#0F0C2E) instead
+- Don't mix font families — Inter for UI, monospace for code, nothing else
+- Don't use borders heavier than 1px — the design relies on subtle separation
+- Don't center-align body text — left-align for readability, center only for headlines
