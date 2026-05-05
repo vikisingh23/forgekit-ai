@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuraForge AI — Agent Catalog</title>
+<meta name="description" content="41 AI agents for end-to-end software development. Browse, search, and install.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0c2e;color:#e0ddf5;font-family:Inter,system-ui,sans-serif;line-height:1.6}
+a{color:#F9A212;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(135deg,#0f0c2e,#1a1550,#2a1f6e)}
+.hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;color:#fff;margin-bottom:12px}
+.hero h1 span{color:#F9A212}
+.hero p{font-size:18px;color:#b8b5e0;margin-bottom:30px}
+.stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.stat{text-align:center}
+.stat-num{font-size:36px;font-weight:800;color:#fff}
+.stat-label{font-size:12px;color:#F9A212;text-transform:uppercase;letter-spacing:2px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;display:inline-block}
+.btn-primary{background:#F9A212;color:#1A1744}
+.btn-secondary{border:1px solid #F9A212;color:#F9A212}
+
+.container{max-width:1100px;margin:0 auto;padding:40px 20px}
+
+.search-bar{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.search-bar input{flex:1;min-width:200px;padding:12px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:#fff;font-size:16px}
+.search-bar input::placeholder{color:#6c63a0}
+.search-bar input:focus{outline:none;border-color:#F9A212}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filter-btn{padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#b8b5e0;cursor:pointer;font-size:13px;transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:#F9A212;color:#1A1744;border-color:#F9A212}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;transition:all 0.2s;cursor:pointer}
+.card:hover{border-color:#F9A212;transform:translateY(-2px)}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.card-icon{font-size:20px}
+.card-name{font-size:16px;font-weight:700;color:#fff}
+.card-stack{font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,162,18,0.15);color:#F9A212}
+.card-desc{font-size:13px;color:#8886b0;margin-top:8px}
+.card-category{font-size:11px;color:#6c63a0;margin-top:8px}
+
+.install{background:rgba(255,255,255,0.03);border-radius:12px;padding:30px;margin-top:40px;text-align:center}
+.install h2{color:#fff;margin-bottom:16px}
+.install code{display:block;background:rgba(0,0,0,0.3);padding:16px;border-radius:8px;font-family:'SF Mono',monospace;font-size:14px;color:#4caf50;margin:8px 0;text-align:left;max-width:500px;margin-left:auto;margin-right:auto}
+
+.footer{text-align:center;padding:40px 20px;color:#6c63a0;font-size:14px}
+
+@media(max-width:600px){.stats{gap:20px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Neura<span>Forge</span> AI</h1>
+  <p>Describe a feature in plain English. Get code that follows enterprise patterns.</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">41</div><div class="stat-label">Agents</div></div>
+    <div class="stat"><div class="stat-num">22</div><div class="stat-label">MCP Servers</div></div>
+    <div class="stat"><div class="stat-num">36</div><div class="stat-label">Skills</div></div>
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Stacks</div></div>
+  </div>
+  <div class="hero-actions">
+    <a href="https://github.com/vikisingh23/neuraforge-ai" class="btn btn-primary">GitHub</a>
+    <a href="https://github.com/vikisingh23/neuraforge-ai/blob/main/QUICKSTART.md" class="btn btn-secondary">Quickstart</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Search agents... (e.g., debug, react, scaffold)">
+  </div>
+  
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="generation">⚙️ Code Generation</button>
+    <button class="filter-btn" data-filter="review">🔍 Code Review</button>
+    <button class="filter-btn" data-filter="productivity">🛠️ Developer Productivity</button>
+    <button class="filter-btn" data-filter="product">📋 Product & Planning</button>
+    <button class="filter-btn" data-filter="testing">🧪 Testing & QA</button>
+    <button class="filter-btn" data-filter="infra">🏗️ Infrastructure & Docs</button>
+    <button class="filter-btn" data-filter="other">📦 Other</button>
+  </div>
+
+  <div class="grid" id="agent-grid">
+    <div class="card" data-category="productivity" data-name="api-design" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">api-design</span>
+        
+      </div>
+      <div class="card-desc">You are **API Design**, an API architect who creates OpenAPI specs from requirements.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="review" data-name="architecture-reviewer" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">architecture-reviewer</span>
+        
+      </div>
+      <div class="card-desc">You are a specialized architecture reviewer focused on Enterprise Rulebook patterns and best practices.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="productivity" data-name="changelog" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">changelog</span>
+        
+      </div>
+      <div class="card-desc">You are **Changelog**, a release notes generator.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="productivity" data-name="db-design" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">db-design</span>
+        
+      </div>
+      <div class="card-desc">You are **DB Design**, a database architect who creates schemas from plain English requirements.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="productivity" data-name="debug" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">debug</span>
+        
+      </div>
+      <div class="card-desc">You are **Debug**, a senior developer who diagnoses and fixes bugs across all stacks.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="productivity" data-name="deps-audit" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">deps-audit</span>
+        
+      </div>
+      <div class="card-desc">You are **Deps Audit**, a dependency health checker.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="infra" data-name="design-sync" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🏗️</span>
+        <span class="card-name">design-sync</span>
+        
+      </div>
+      <div class="card-desc">You are **Design Sync**, an agent that reads a Figma design library and updates DESIGN.md with the actual design tokens.</div>
+      <div class="card-category">Infrastructure & Docs</div>
+    </div>
+    <div class="card" data-category="product" data-name="devils-advocate" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <span class="card-name">devils-advocate</span>
+        
+      </div>
+      <div class="card-desc">You are a ruthless, detail-obsessed reviewer who challenges every product decision, BRS, regulatory interpretation, and feature recommendation produce</div>
+      <div class="card-category">Product & Planning</div>
+    </div>
+    <div class="card" data-category="infra" data-name="devops" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🏗️</span>
+        <span class="card-name">devops</span>
+        
+      </div>
+      <div class="card-desc">You are a DevOps engineer specializing in your infrastructure stack. You validate, generate, and optimize CI/CD pipelines, Dockerfiles, and deployment</div>
+      <div class="card-category">Infrastructure & Docs</div>
+    </div>
+    <div class="card" data-category="generation" data-name="django-forge" data-stack="Django">
+      <div class="card-header">
+        <span class="card-icon">⚙️</span>
+        <span class="card-name">django-forge</span>
+        <span class="card-stack">Django</span>
+      </div>
+      <div class="card-desc">You are **Django Forge**, a specialized Django + DRF code generation agent for enterprise applications. You follow enterprise's exact patterns from th</div>
+      <div class="card-category">Code Generation</div>
+    </div>
+    <div class="card" data-category="review" data-name="django-reviewer" data-stack="Django">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">django-reviewer</span>
+        <span class="card-stack">Django</span>
+      </div>
+      <div class="card-desc">You are a specialized Django + DRF code reviewer focused on enterprise Rulebook standards.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="infra" data-name="doc-generator" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🏗️</span>
+        <span class="card-name">doc-generator</span>
+        
+      </div>
+      <div class="card-desc">You are **Doc Generator**, a specialist in creating professional business documents.</div>
+      <div class="card-category">Infrastructure & Docs</div>
+    </div>
+    <div class="card" data-category="infra" data-name="documentation" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🏗️</span>
+        <span class="card-name">documentation</span>
+        
+      </div>
+      <div class="card-desc">You are the **Documentation Agent** for your company projects. You generate, organize, and maintain project wikis that live inside each repository und</div>
+      <div class="card-category">Infrastructure & Docs</div>
+    </div>
+    <div class="card" data-category="review" data-name="dotnet-reviewer" data-stack=".NET">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">dotnet-reviewer</span>
+        <span class="card-stack">.NET</span>
+      </div>
+      <div class="card-desc">You are a specialized .NET code reviewer focused on Enterprise Rulebook standards, with deep expertise in financial services systems handling high-vol</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="productivity" data-name="explain" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">explain</span>
+        
+      </div>
+      <div class="card-desc">You are **Explain**, a codebase documentation specialist for developer onboarding.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="product" data-name="feature-pipeline" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <span class="card-name">feature-pipeline</span>
+        
+      </div>
+      <div class="card-desc">You are the master orchestrator for your feature development pipeline. You coordinate a multi-agent workflow that takes a feature request from idea to</div>
+      <div class="card-category">Product & Planning</div>
+    </div>
+    <div class="card" data-category="generation" data-name="flutter-forge" data-stack="Flutter">
+      <div class="card-header">
+        <span class="card-icon">⚙️</span>
+        <span class="card-name">flutter-forge</span>
+        <span class="card-stack">Flutter</span>
+      </div>
+      <div class="card-desc">You are **Flutter Forge**, a specialized Flutter/Dart code generation agent trained on your mobile app patterns and your project standards.</div>
+      <div class="card-category">Code Generation</div>
+    </div>
+    <div class="card" data-category="review" data-name="flutter-reviewer" data-stack="Flutter">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">flutter-reviewer</span>
+        <span class="card-stack">Flutter</span>
+      </div>
+      <div class="card-desc">You are a specialized Flutter/Dart code reviewer focused on Enterprise Rulebook standards and mobile-specific best practices.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="generation" data-name="forge" data-stack=".NET">
+      <div class="card-header">
+        <span class="card-icon">⚙️</span>
+        <span class="card-name">forge</span>
+        <span class="card-stack">.NET</span>
+      </div>
+      <div class="card-desc">You are **Forge**, a specialized .NET Core code generation agent trained on your production codebase patterns.</div>
+      <div class="card-category">Code Generation</div>
+    </div>
+    <div class="card" data-category="product" data-name="fullstack-orchestrator" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <span class="card-name">fullstack-orchestrator</span>
+        
+      </div>
+      <div class="card-desc">You are a fullstack orchestrator that coordinates end-to-end feature development from UI design to deployed code.</div>
+      <div class="card-category">Product & Planning</div>
+    </div>
+    <div class="card" data-category="testing" data-name="load-tester" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🧪</span>
+        <span class="card-name">load-tester</span>
+        
+      </div>
+      <div class="card-desc">You are a performance engineering specialist for Your organization's financial services platform. You design, generate, execute, and analyze load test</div>
+      <div class="card-category">Testing & QA</div>
+    </div>
+    <div class="card" data-category="productivity" data-name="migrate" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">migrate</span>
+        
+      </div>
+      <div class="card-desc">You are **Migrate**, a code migration specialist.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="generation" data-name="nestjs-forge" data-stack="NestJS">
+      <div class="card-header">
+        <span class="card-icon">⚙️</span>
+        <span class="card-name">nestjs-forge</span>
+        <span class="card-stack">NestJS</span>
+      </div>
+      <div class="card-desc">You are **NestJS Forge**, a specialized NestJS + TypeORM code generation agent for enterprise applications. You follow your project's patterns for fin</div>
+      <div class="card-category">Code Generation</div>
+    </div>
+    <div class="card" data-category="review" data-name="nestjs-reviewer" data-stack="NestJS">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">nestjs-reviewer</span>
+        <span class="card-stack">NestJS</span>
+      </div>
+      <div class="card-desc">You are a specialized NestJS + TypeORM code reviewer focused on Enterprise Rulebook standards for enterprise financial services APIs.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="review" data-name="performance-reviewer" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">performance-reviewer</span>
+        
+      </div>
+      <div class="card-desc">You are a specialized performance reviewer focused on Enterprise Rulebook optimization standards.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="review" data-name="pr-review" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">pr-review</span>
+        
+      </div>
+      <div class="card-desc">You are **PR Review**, a senior code reviewer who reviews git branch changes.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="infra" data-name="presentation-builder" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🏗️</span>
+        <span class="card-name">presentation-builder</span>
+        
+      </div>
+      <div class="card-desc">You are **Presentation Builder**, a specialist in creating professional business presentations.</div>
+      <div class="card-category">Infrastructure & Docs</div>
+    </div>
+    <div class="card" data-category="product" data-name="product-manager" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <span class="card-name">product-manager</span>
+        
+      </div>
+      <div class="card-desc">You are a senior Product Manager with deep expertise in your configured industry domain. You understand the full value chain and are well-versed in re</div>
+      <div class="card-category">Product & Planning</div>
+    </div>
+    <div class="card" data-category="generation" data-name="react-forge" data-stack="React">
+      <div class="card-header">
+        <span class="card-icon">⚙️</span>
+        <span class="card-name">react-forge</span>
+        <span class="card-stack">React</span>
+      </div>
+      <div class="card-desc">You are **React Forge**, a specialized React code generation agent trained on your production React codebases (your web applications) and your project</div>
+      <div class="card-category">Code Generation</div>
+    </div>
+    <div class="card" data-category="review" data-name="react-reviewer" data-stack="React">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">react-reviewer</span>
+        <span class="card-stack">React</span>
+      </div>
+      <div class="card-desc">You are a specialized React code reviewer focused on Enterprise Rulebook standards.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="productivity" data-name="refactor" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">refactor</span>
+        
+      </div>
+      <div class="card-desc">You are **Refactor**, a specialist in breaking down complex code into clean, focused, testable pieces.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="generation" data-name="rn-forge" data-stack="React Native">
+      <div class="card-header">
+        <span class="card-icon">⚙️</span>
+        <span class="card-name">rn-forge</span>
+        <span class="card-stack">React Native</span>
+      </div>
+      <div class="card-desc">You are **React Native Forge**, a specialized React Native code generation agent trained on your mobile app patterns and your project standards.</div>
+      <div class="card-category">Code Generation</div>
+    </div>
+    <div class="card" data-category="review" data-name="rn-reviewer" data-stack="React Native">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">rn-reviewer</span>
+        <span class="card-stack">React Native</span>
+      </div>
+      <div class="card-desc">You are a specialized React Native code reviewer focused on Enterprise Rulebook standards and mobile-specific best practices.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="productivity" data-name="scaffold" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🛠️</span>
+        <span class="card-name">scaffold</span>
+        
+      </div>
+      <div class="card-desc">You are **Scaffold**, a project bootstrapper that creates new projects with enterprise standards pre-configured.</div>
+      <div class="card-category">Developer Productivity</div>
+    </div>
+    <div class="card" data-category="review" data-name="security-reviewer" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">security-reviewer</span>
+        
+      </div>
+      <div class="card-desc">You are a specialized security reviewer focused on Enterprise Rulebook security standards.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="testing" data-name="sentinel" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🧪</span>
+        <span class="card-name">sentinel</span>
+        
+      </div>
+      <div class="card-desc">You are **Sentinel**, a specialized API testing agent that guards API quality through comprehensive testing and validation.</div>
+      <div class="card-category">Testing & QA</div>
+    </div>
+    <div class="card" data-category="generation" data-name="spring-forge" data-stack="Spring">
+      <div class="card-header">
+        <span class="card-icon">⚙️</span>
+        <span class="card-name">spring-forge</span>
+        <span class="card-stack">Spring</span>
+      </div>
+      <div class="card-desc">You are **Spring Boot Forge**, a specialized Java + Spring Boot code generation agent for enterprise applications. You follow your architecture princi</div>
+      <div class="card-category">Code Generation</div>
+    </div>
+    <div class="card" data-category="review" data-name="spring-reviewer" data-stack="Spring">
+      <div class="card-header">
+        <span class="card-icon">🔍</span>
+        <span class="card-name">spring-reviewer</span>
+        <span class="card-stack">Spring</span>
+      </div>
+      <div class="card-desc">You are a specialized Java + Spring Boot code reviewer focused on enterprise Rulebook standards.</div>
+      <div class="card-category">Code Review</div>
+    </div>
+    <div class="card" data-category="generation" data-name="test-forge" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">⚙️</span>
+        <span class="card-name">test-forge</span>
+        
+      </div>
+      <div class="card-desc">You are **Test Forge**, a specialized test generation agent that creates comprehensive tests across all enterprise technology stacks.</div>
+      <div class="card-category">Code Generation</div>
+    </div>
+    <div class="card" data-category="testing" data-name="ui-validator" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🧪</span>
+        <span class="card-name">ui-validator</span>
+        
+      </div>
+      <div class="card-desc">You are the **UI Validator**, responsible for comparing generated React UIs with Figma designs and ensuring 85%+ visual accuracy.</div>
+      <div class="card-category">Testing & QA</div>
+    </div>
+    <div class="card" data-category="infra" data-name="video-creator" data-stack="all">
+      <div class="card-header">
+        <span class="card-icon">🏗️</span>
+        <span class="card-name">video-creator</span>
+        
+      </div>
+      <div class="card-desc">You are **Video Creator**, an AI agent that creates videos using code-based workflows. You combine Remotion (React-based video), FFmpeg processing, an</div>
+      <div class="card-category">Infrastructure & Docs</div>
+    </div>
+  </div>
+
+  <div class="install">
+    <h2>Get Started</h2>
+    <p style="color:#b8b5e0;margin-bottom:16px">Two commands. Works with Claude Code, Cursor, Gemini CLI, and 9 more platforms.</p>
+    <code>/plugin marketplace add vikisingh23/neuraforge-ai<br>/plugin install neuraforge-ai</code>
+  </div>
+</div>
+
+<div class="footer">
+  <p>NeuraForge AI · Apache 2.0 · <a href="https://github.com/vikisingh23/neuraforge-ai">GitHub</a></p>
+</div>
+
+<script>
+const cards = document.querySelectorAll('.card');
+const search = document.getElementById('search');
+const filters = document.querySelectorAll('.filter-btn');
+
+search.addEventListener('input', filter);
+filters.forEach(btn => btn.addEventListener('click', (e) => {
+  filters.forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  filter();
+}));
+
+function filter() {
+  const q = search.value.toLowerCase();
+  const cat = document.querySelector('.filter-btn.active').dataset.filter;
+  cards.forEach(card => {
+    const matchSearch = card.dataset.name.includes(q) || card.textContent.toLowerCase().includes(q);
+    const matchCat = cat === 'all' || card.dataset.category === cat;
+    card.style.display = matchSearch && matchCat ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
